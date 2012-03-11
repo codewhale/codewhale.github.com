@@ -1,8 +1,3 @@
-function isUrl(s) {
-	var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-	return regexp.test(s);
-}
-
 function doAjax(url, insertto, selector, remove, callback){
 	var container = $(insertto);
 	if(url.match('^http')){
@@ -48,7 +43,7 @@ function onload(){
 
 					url = $(this).attr('href');
 
-					if (!isUrl(url))
+					if(!url.match('^http'))
 						url = 'http://www.phoronix.com/' + url;
 
 					doAjax(url, '#story', '.KonaBody', '' , function() {
