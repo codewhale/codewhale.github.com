@@ -1,3 +1,7 @@
+function isUrl(s) {
+	var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+	return regexp.test(s);
+}
 
 function doAjax(url, insertto, selector, remove, callback){
 	var container = $(insertto);
@@ -41,8 +45,13 @@ function onload(){
 					event.preventDefault(); 
 					console.log($(this).attr('href'));
 					$('#phoronix').hide();
-					doAjax('http://www.phoronix.com/' + $(this).attr('href'), 
-						'#story', '.KonaBody', '' , function() {
+
+					url = $(this).attr('href');
+
+					if (!isUrl(url))
+						url = 'http://www.phoronix.com/' + url;
+
+					doAjax(url, '#story', '.KonaBody', '' , function() {
 							$('#story').show();
 						});
 				});
