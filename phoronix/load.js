@@ -56,4 +56,8 @@ function onload(){
 		$('#story').hide();
 		$('#phoronix').show();
 	});
+	$('#back').click(function(){
+		$('#story').hide();
+		$('#phoronix').show();
+	});
 }
